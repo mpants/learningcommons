@@ -1,4 +1,5 @@
 # Django settings for learningcommons project.
+from os.path import join, dirname
 
 DEBUG = True
 TEMPLATE_DEBUG = DEBUG
