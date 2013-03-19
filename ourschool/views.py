@@ -10,3 +10,8 @@ def display_meta_t(request):
   c = Context({'values': values,'testvar':test})
   t = Template('{{ testvar }}<br/>{% for item in values %} {{ item }}<br/>{% endfor %}')
   return HttpResponse(t.render(c))
+
+def display_classes(request):
+  t = get_template('displayclasses.html')
+  html = t.render(Context({'classes': classes}))
+  return HttpResponse(html)
