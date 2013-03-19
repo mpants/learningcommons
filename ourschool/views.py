@@ -2,6 +2,8 @@
 from django.http import HttpResponse
 from django.template.loader import get_template
 from django.template import Context, Template
+from django.shortcuts import render_to_response
+from models import source
 
 def display_meta_t(request):
   values = request.META.items()
@@ -12,6 +14,6 @@ def display_meta_t(request):
   return HttpResponse(t.render(c))
 
 def display_classes(request):
-  t = get_template('displayclasses.html')
-  html = t.render(Context({'classes': classes}))
-  return HttpResponse(html)
+  classes = source.objects.all()
+  return render_to_response('displayclasses.html',{'classes':classes})
+  
