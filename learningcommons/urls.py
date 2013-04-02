@@ -1,5 +1,5 @@
 from django.conf.urls import patterns, include, url
-from ourschool.views import display_meta_t, display_classes
+from ourschool.views import display_meta_t
 
 # Uncomment the next two lines to enable the admin:
 from django.contrib import admin
@@ -8,8 +8,7 @@ admin.autodiscover()
 urlpatterns = patterns('',
     # Examples:
     url(r'^meta/$', display_meta_t),
-    url(r'^test-classes/$',display_classes),
-    # url(r'^$', 'learningcommons.views.home', name='home'),
+    url(r'^$', 'ourschool.views.home', name='home'),
     # url(r'^learningcommons/', include('learningcommons.foo.urls')),
 
     # Uncomment the admin/doc line below to enable admin documentation:

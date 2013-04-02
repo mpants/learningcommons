@@ -83,7 +83,22 @@ class source(models.Model):
   #image for class
   classrelated = models.ManyToManyField('self',blank=True,verbose_name='Related Classes')
   #related classes
-    
+  
+  def _get_num_users(self):
+    #Gets number of users
+    return len(self.classusers)
+  
+  classnumusers = property(_get_num_users)
+  
+  def _get_is_free(self):
+    #Checks if class is free
+    if self.classcost == 'Free' or classcost == 'free':
+      return 'Yes'
+    else:
+      return 'No'
+  
+  classisfree = property(_get_is_free)
+  
   def __unicode__(self):
     return self.classtitle
   

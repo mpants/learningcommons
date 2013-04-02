@@ -1,0 +1,45 @@
+body {
+	background: #e4bc44;
+	width:1000px;
+}
+
+.class-name {
+	width: 255px;
+	float: left;
+}
+
+.class-format {
+	width: 120px;
+	float: left;
+}
+
+.class-host {
+	width: 120px;
+	float: left;
+}
+
+.class-isfree {
+	width: 50px;
+	float: left;
+}
+
+.class-nextdate {
+	width: 120px;
+	float: left;
+}
+
+.class-numusers {
+	width: 50px;
+	float: left;
+	
+}
+
+.class-subject {
+	width: 100px;
+	float: left;
+}
+
+.class-listing {
+	width: 900px;
+}
+}

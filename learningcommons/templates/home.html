@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta charset="utf-8" />
+
+		<!-- Always force latest IE rendering engine (even in intranet) & Chrome Frame
+		Remove this if you use the .htaccess -->
+		<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+
+		<title>displayclasses</title>
+		<meta name="description" content="" />
+		<meta name="author" content="M.Charlemagne" />
+
+		<meta name="viewport" content="width=device-width; initial-scale=1.0" />
+
+		<!-- Replace favicon.ico & apple-touch-icon.png in the root of your domain and delete these references -->
+		<link rel="shortcut icon" href="/favicon.ico" />
+		<link rel="stylesheet" href="{{ STATIC_URL }}css/style.css" type="text/css" media="screen" />
+	</head>
+
+	<body>
+			<header>
+				<h1>Our Local Learning Commons</h1>
+				<h2>Working on class issues</h2>
+			</header>
+			<!--
+			<nav>
+				<p>
+					<a href="/">Home</a>
+				</p>
+				<p>
+					<a href="/contact">Contact</a>
+				</p>
+			</nav>
+			-->
+				<div class="class-listing">
+				<h3>Learn</h3>
+				Learning is happening everywhere in our community classroom.  See some happening right now:<br/>
+				{% for class in classes %}
+					<div class="class-name">{{ class }}</div>
+					<div class="class-subject">{{ class.classsubject }}</div>
+					<div class="class-format">{{ class.classformat }}</div>
+					<div class="class-host">{{ class.classhost }}</div>
+					<div class="class-nextdate">{{ class.classnextdate }}</div>
+					<div class="class-numusers">{{ class.classnumusers }}</div>
+					<div class="class-isfree">{{ class.classisfree }}</div>
+				</div>
+					<br/>
+				   {% endfor %}
+			
+				
+				<h3>Teach or Learn Together</h3>
+				Have a skill or subject you’d love to share with your community?
+				 
+			
+
+			<footer>
+				<p>
+					CC BY-NC-SA 3.0 US
+				</p>
+			</footer>
+		
+	</body>
+</html>
