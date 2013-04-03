@@ -47,7 +47,11 @@
 				</div>
 					<br/>
 				   {% endfor %}
-			
+				Search for a class:
+				{% if error %}
+					Please enter a search
+				{% endif %}
+				{% include 'search.html' %}
 				
 				<h3>Teach or Learn Together</h3>
 				Have a skill or subject you’d love to share with your community?
