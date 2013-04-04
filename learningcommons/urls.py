@@ -9,8 +9,10 @@ urlpatterns = patterns('',
     url(r'^meta/$', 'ourschool.views.display_meta_t', name='meta'),
     url(r'^admin/', include(admin.site.urls)),
     url(r'^$', 'ourschool.views.home', name='home'),
-    url(r'^test', 'ourschool.views.test', name='test'),
+    url(r'^test/', 'ourschool.views.test', name='test'),
     url(r'^search/$','ourschool.views.search',name='search'),
+    url(r'^submitlearning/$','ourschool.views.submitlearning',name='submitlearning'),
+    url(r'^submittedlearning','ourschool.views.submitted',name='submitted'),
     # url(r'^learningcommons/', include('learningcommons.foo.urls')),
 
     # Uncomment the admin/doc line below to enable admin documentation:

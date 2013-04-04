@@ -48,21 +48,23 @@
 					<br/>
 				   {% endfor %}
 				Search for a class:
-				{% if error %}
-					Please enter a search
+				{% if errors %}
+					{% for error in errors %}
+					<br/>{{ error }}
+					{% endfor %}
+					<br/>
 				{% endif %}
-				{% include 'search.html' %}
+				{% include 'includes/search.html' %}
 				
 				<h3>Teach or Learn Together</h3>
 				Have a skill or subject you’d love to share with your community?
-				 
+				<a href="submitlearning/">Add one to our site!</a><br/>
+				
+				Not sure what to teach?  How about a seminar on <strong>{{ suggestion }}</strong>.
+				
 			
 
-			<footer>
-				<p>
-					CC BY-NC-SA 3.0 US
-				</p>
-			</footer>
+			{% include 'includes/footer.html' %}
 		
 	</body>
 </html>
