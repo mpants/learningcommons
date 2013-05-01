@@ -62,8 +62,10 @@ def home(request):
       return render_to_response('search_results.html', {'sources': sources, 'query': q})
   #return home page, with or without errors
   classes = source.objects.all()
+  likely = getLikely()
+  never = getNever()
   suggestion = getSuggestion()
-  c = RequestContext(request, {'classes':classes,'errors':errors,'suggestion':suggestion})
+  c = RequestContext(request, {'classes':classes,'errors':errors,'suggestion':suggestion,'likely':likely,'never':never,})
   return render_to_response('home.html',c)
 
 def getSuggestion():
@@ -71,3 +73,11 @@ def getSuggestion():
   secondparts = ['crystal ','fishing ','communication ','James Joyce ','swingset repair ','3D printing ','kitten ','website ','linear ','non','pre','post','anti','dimensional ','toroid ','bicycle ','crossfit ','arduino ','bird ','chicken ','bunny ','kickball ']
   thirdparts = ['dreaming','fishing','running','making','building','repairing','discourse','rhetorics','raising','tending','petting','cuddling','birthing','eating','walking','cycling','chilling','slacking','hiking','soldering','knitting','wiring','writing','poetry','thinking','visioning','sillyracing']
   return choice(firstparts) + choice(secondparts) + choice(thirdparts)
+
+def getLikely():
+  likelysee = ['Someone new to town making friends.','Curricula shared freely with other communities around the world.','Skills being taught that help meet real needs.','Pride in actual real-world accomplishments.','People discovering what they have to share.','Many ways to demonstrate competency in a skill.','As many formats of teaching as there are styles of learning.','Partnerships with towns, communities, and nonprofits.','A space for non-traditional subjects.','A wide range of economic backgrounds.','A parent studying to help their family.','Students learning in a sunlit park.','Students working on community projects.','People publishing work for the first time.','Forgotten thinkers and authors being celebrated.','Learning that grows across disciplines to create something new.',]
+  return choice(likelysee)
+
+def getNever():
+  neversee = ['A building named after Fed Ex.','18 year olds gambling on disappearing jobs.','$150,000 of debt to get a degree.','Fake study programs to pass the football team.','Student research funded by the Department of Defense.','A bill in the mail.','20 years of debt.','A student launched into a career path they regret.','A false promise of jobs.','A class where students only show up for the exams.','The ups and downs of state education budgets.','A classroom of all twenty-somethings.','Someone turned away.','Partnerships with megacorporations','Trustees who own stock in student loan companies.',]
+  return choice(neversee)

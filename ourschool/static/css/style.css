@@ -1,140 +1,161 @@
 body {
 	background: rgb(50,182,131);
 	font-family: 'Noto Sans', sans-serif;
-	color:#495148;
+	color: #495148;
 	font-size: .9em;
 }
 #wrapper {
-	width:960px;
-	margin-left:auto;
-	margin-right:auto;
+	width: 960px;
+	margin-left: auto;
+	margin-right: auto;
+	margin-top: 40px;
 	background: #f3c553;
-	height:950px;
+	height: 950px;
 	border-radius: 5px 5px 5px 5px;
--moz-border-radius: 5px 5px 5px 5px;
--webkit-border-radius: 5px 5px 5px 5px;
-border: 0px solid #000000;
--webkit-box-shadow: 1px 1px 5px 0px rgba(0,0,0,0.75);
--moz-box-shadow: 1px 1px 5px 0px rgba(0,0,0,0.75);
-box-shadow: 1px 1px 5px 0px rgba(0,0,0,0.75);
+	-moz-border-radius: 5px 5px 5px 5px;
+	-webkit-border-radius: 5px 5px 5px 5px;
+	border: 0px solid #000000;
+	-webkit-box-shadow: 1px 1px 5px 0px rgba(0,0,0,0.75);
+	-moz-box-shadow: 1px 1px 5px 0px rgba(0,0,0,0.75);
+	box-shadow: 1px 1px 5px 0px rgba(0,0,0,0.75);
 }
 
 #header {
-	width:100%;	
-	height:155px;
+	width: 100%;
+	height: 155px;
 }
 
 #logo {
-	width:100%;
-
+	width: 100%;
 }
 
 #about {
-	font-size:.9em;	
-	clear:both;
-	padding-top:10px;
-	width:660px;
+	font-size: .9em;
+	clear: both;
+	width: 383px;
+	float: left;
 }
 #main {
-	margin-left:20px;
-	margin-right:20px;
+	margin-left: 20px;
+	margin-right: 20px;
 }
 
-
 #intro-text {
-	font-size:1.2em;
-	background:#71c199;
-	padding-left:20px;
-	padding-top:3px;
-	padding-bottom:3px;
+	font-size: 1.2em;
+	background: #71c199;
+	padding-left: 20px;
+	padding-top: 3px;
+	padding-bottom: 3px;
 }
 
 #sidebar {
-	width:240px;
-	height:500px;
-	float:left;	
-	margin-top:30px;
-	font-size:.9em;
-	margin-left:10px;
+	width: 250px;
+	height: 600px;
+	float: left;
+	font-size: .9em;
+	margin-left: 10px;
+}
+
+#likely-never-see {
+	float: left;
+	width: 250px;
+	border-radius: 5px 5px 5px 5px;
+	-moz-border-radius: 5px 5px 5px 5px;
+	-webkit-border-radius: 5px 5px 5px 5px;
+	border: 1px solid #cC9F2C;
+	padding-left: 10px;
+	padding-right:10px;
+	margin-top: 10px;
+	background: #fCcF5C;
+	padding-bottom:10px;
 }
 
 #nav {
-	margin-top:10px;
+	margin-top: 10px;
+	padding-left:5px;
 }
 
 #digital-commons {
-	height:150px;
+	height: 150px;
+	padding-left:5px;
 }
 
 #search-area {
-	margin-top:10px;
+	margin-top: 10px;
+}
+#partners {
+	border-radius: 5px 5px 5px 5px;
+	-moz-border-radius: 5px 5px 5px 5px;
+	-webkit-border-radius: 5px 5px 5px 5px;
+	border: 1px solid #cC9F2C;
+	padding-left: 5px;
+	background: #fCcF5C;
 }
 #learn-area {
-		border-radius: 5px 5px 5px 5px;
--moz-border-radius: 5px 5px 5px 5px;
--webkit-border-radius: 5px 5px 5px 5px;
-border: 1px solid #cC9F2C;
-padding-bottom:10px;
-padding-right:5px;
-padding-left:5px;
-margin-bottom:10px;
-background:#fCcF5C;
+	border-radius: 5px 5px 5px 5px;
+	-moz-border-radius: 5px 5px 5px 5px;
+	-webkit-border-radius: 5px 5px 5px 5px;
+	border: 1px solid #cC9F2C;
+	padding-bottom: 10px;
+	padding-right: 5px;
+	padding-left: 5px;
+	margin-bottom: 10px;
+	background: #fCcF5C;
 }
 #teach-area {
-	
-background:#fCcF5C;
-	width:648px;
-	float:left;	
-		border-radius: 5px 5px 5px 5px;
--moz-border-radius: 5px 5px 5px 5px;
--webkit-border-radius: 5px 5px 5px 5px;
-border: 1px solid #cC9F2C;
-padding-bottom:10px;
-padding-left:5px;
-margin-bottom:10px;
+
+	background: #fCcF5C;
+	width: 648px;
+	float: left;
+	border-radius: 5px 5px 5px 5px;
+	-moz-border-radius: 5px 5px 5px 5px;
+	-webkit-border-radius: 5px 5px 5px 5px;
+	border: 1px solid #cC9F2C;
+	padding-bottom: 10px;
+	padding-left: 5px;
+	margin-bottom: 10px;
 }
 
 #feed {
-	height:100px;
+	height: 100px;
+	padding-left:5px;
 }
 .class-listing {
-	width:670px;
+	width: 670px;
 }
 
 .class-name {
 	width: 230px;
-	
 	float: left;
-	overflow:hidden;
+	overflow: hidden;
 	white-space: nowrap;
-	text-overflow:ellipsis;
-	margin-right:10px;
+	text-overflow: ellipsis;
+	margin-right: 10px;
 }
 
 .class-format {
 	width: 100px;
 	float: left;
-	overflow:hidden;
+	overflow: hidden;
 	white-space: nowrap;
-	text-overflow:ellipsis;
+	text-overflow: ellipsis;
 }
-
 
 .class-host {
 	width: 95px;
-	padding-right:5px;
+	padding-right: 5px;
 	float: left;
-	overflow:hidden;
+	overflow: hidden;
 	white-space: nowrap;
-	text-overflow:ellipsis;
+	text-overflow: ellipsis;
 }
 
 .class-isfree {
 	width: 70px;
 	float: left;
-	overflow:hidden;
+	overflow: hidden;
 	white-space: nowrap;
-	text-overflow:ellipsis;
+	text-overflow: ellipsis;
 }
 
 .class-nextdate {
@@ -145,23 +166,21 @@ margin-bottom:10px;
 .class-numusers {
 	width: 50px;
 	float: left;
-	
 }
 
 .class-subject {
 	width: 120px;
 	float: left;
-	overflow:hidden;
+	overflow: hidden;
 	white-space: nowrap;
-	text-overflow:ellipsis;
+	text-overflow: ellipsis;
 }
 
 .classes-listing {
 	width: 655px;
-	margin-right:5px;
+	margin-right: 5px;
 	font-size: 0.9em;
-	padding-bottom:15px;
-	float:left;
-
+	padding-bottom: 15px;
+	float: left;
 }
 
