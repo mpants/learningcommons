@@ -1,4 +1,13 @@
 from django import forms
+from django.forms import ModelForm
+from models import source
+
+
+class sourceform(ModelForm):
+  class Meta:
+    model = source
+    exclude = ('classusers','classinterested','classcertified','classteachers',)
+  
 
 class addlearning(forms.Form):
   FORMAT_CHOICES = (

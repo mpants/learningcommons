@@ -4,7 +4,7 @@ from django.template.loader import get_template
 from django.template import Context, Template, RequestContext
 from django.shortcuts import render_to_response
 from models import source
-from forms import addlearning
+from forms import addlearning, sourceform
 from random import choice
 
 def display_meta_t(request):
@@ -23,9 +23,11 @@ def submitted(request):
 
 def submitlearning(request):
   if request.method == 'POST':
-    form = addlearning(request.POST)
+    #form = addlearning(request.POST)
+    form = sourceform(request.POST)
     if form.is_valid():
       cleaned = form.cleaned_data
+      '''
       send_mail(
         cd['title'],
         cd['subject'],
@@ -34,9 +36,13 @@ def submitlearning(request):
         cd['date'],
         ['nostickgnostic@gmail.com'],
       )
+      '''
+      #save a new source from the form's data
+      new_source = form.save()
+      
       return HttpResponseRedirect('/submittedlearning/')
   else:
-    form = addlearning(initial={'host': 'Community Member'})
+    form = sourceform(initial={'host': 'Community Member'})
   return render_to_response('submitlearning.html', {'form': form}, RequestContext(request))
     
 
