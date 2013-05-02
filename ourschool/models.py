@@ -1,4 +1,6 @@
 from django.db import models
+from django.template.defaultfilters import slugify
+from django_extensions.db.fields import AutoSlugField
 
 class source(models.Model):
   #source of learning - to populate available classes. flexible enough for many formats
@@ -43,6 +45,8 @@ class source(models.Model):
 
   classtitle = models.CharField(max_length='70',verbose_name='Title',unique=True,help_text='example: Learn Permacultural Approaches To Oral Hygeine / Bicycles!')
   #title of class
+  #classslug = AutoSlugField(max_length=50, unique=True, populate_from=('classtitle',))
+  #class slug
   classdescription = models.TextField(verbose_name='Description',help_text='Write about your relevant experience (if any!), learning goals for yourself and others.  Also include prerequisites, materials costs, and anything else unique.')
   #description of class
   classstatus = models.CharField(max_length='30',blank=True,verbose_name='Status',choices=STATUS_CHOICES)
@@ -84,6 +88,12 @@ class source(models.Model):
   classrelated = models.ManyToManyField('self',blank=True,verbose_name='Related Classes')
   #related classes
   
+  def _get_url(self):
+    #makes URL from class title
+    return slugify(self.classtitle)
+  
+  classurl = property(_get_url)
+  
   def _get_num_users(self):
     #Gets number of users
     return len(self.classusers)
@@ -92,12 +102,15 @@ class source(models.Model):
   
   def _get_is_free(self):
     #Checks if class is free
-    if self.classcost == 'Free' or classcost == 'free':
+    if self.classcost == 'Free' or self.classcost == 'free':
       return 'Yes'
     else:
       return 'No'
   
   classisfree = property(_get_is_free)
+  
+
+  
   
   def __unicode__(self):
     return self.classtitle

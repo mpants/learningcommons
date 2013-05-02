@@ -2,6 +2,7 @@
 from django.http import HttpResponse, HttpResponseRedirect
 from django.template.loader import get_template
 from django.template import Context, Template, RequestContext
+from django.template.defaultfilters import slugify
 from django.shortcuts import render_to_response
 from models import source
 from forms import addlearning, sourceform
@@ -45,7 +46,14 @@ def submitlearning(request):
     form = sourceform(initial={'host': 'Community Member'})
   return render_to_response('submitlearning.html', {'form': form}, RequestContext(request))
     
-
+def viewlearning(request):
+  #View a Learning's details
+  learningrequest = request.path[14:]
+  #learning = source.objects.get(classurl__iexact=learningrequest)
+  #learning = source.objects.get(classslug=learningrequest)
+  return HttpResponse('Welcome to page %s' % learningrequest)
+  
+  
 def home(request):
   #Home page
   errors = []
@@ -59,7 +67,7 @@ def home(request):
     else:
       #render search results page
       sources = source.objects.filter(classtitle__icontains=q)
-      return render_to_response('search_results.html', {'sources': sources, 'query': q})
+      return render_to_response('search_results.html', {'sources': sources, 'query': q}, RequestContext(request))
   #return home page, with or without errors
   classes = source.objects.all()
   likely = getLikely()

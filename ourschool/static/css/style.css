@@ -10,7 +10,7 @@ body {
 	margin-right: auto;
 	margin-top: 40px;
 	background: #f3c553;
-	height: 950px;
+	min-height: 950px;
 	border-radius: 5px 5px 5px 5px;
 	-moz-border-radius: 5px 5px 5px 5px;
 	-webkit-border-radius: 5px 5px 5px 5px;
@@ -29,15 +29,10 @@ body {
 	width: 100%;
 }
 
-#about {
-	font-size: .9em;
+#footer {
 	clear: both;
-	width: 383px;
-	float: left;
-}
-#main {
-	margin-left: 20px;
-	margin-right: 20px;
+	width: 100%;
+	padding: 20px;
 }
 
 #intro-text {
@@ -48,49 +43,15 @@ body {
 	padding-bottom: 3px;
 }
 
-#sidebar {
-	width: 250px;
-	height: 600px;
-	float: left;
-	font-size: .9em;
-	margin-left: 10px;
+#main {
+	margin-left: 20px;
+	margin-right: 20px;
 }
 
-#likely-never-see {
-	float: left;
-	width: 250px;
-	border-radius: 5px 5px 5px 5px;
-	-moz-border-radius: 5px 5px 5px 5px;
-	-webkit-border-radius: 5px 5px 5px 5px;
-	border: 1px solid #cC9F2C;
-	padding-left: 10px;
-	padding-right:10px;
-	margin-top: 10px;
-	background: #fCcF5C;
-	padding-bottom:10px;
+#main-fullwidth {
+	margin:20px;
 }
 
-#nav {
-	margin-top: 10px;
-	padding-left:5px;
-}
-
-#digital-commons {
-	height: 150px;
-	padding-left:5px;
-}
-
-#search-area {
-	margin-top: 10px;
-}
-#partners {
-	border-radius: 5px 5px 5px 5px;
-	-moz-border-radius: 5px 5px 5px 5px;
-	-webkit-border-radius: 5px 5px 5px 5px;
-	border: 1px solid #cC9F2C;
-	padding-left: 5px;
-	background: #fCcF5C;
-}
 #learn-area {
 	border-radius: 5px 5px 5px 5px;
 	-moz-border-radius: 5px 5px 5px 5px;
@@ -100,8 +61,10 @@ body {
 	padding-right: 5px;
 	padding-left: 5px;
 	margin-bottom: 10px;
+	margin-top: 20px;
 	background: #fCcF5C;
 }
+
 #teach-area {
 
 	background: #fCcF5C;
@@ -116,10 +79,68 @@ body {
 	margin-bottom: 10px;
 }
 
+#search-area {
+	margin-top: 10px;
+}
+
+#about {
+	font-size: .9em;
+	clear: both;
+	width: 383px;
+	float: left;
+}
+
+#likely-never-see {
+	float: left;
+	width: 250px;
+	border-radius: 5px 5px 5px 5px;
+	-moz-border-radius: 5px 5px 5px 5px;
+	-webkit-border-radius: 5px 5px 5px 5px;
+	border: 1px solid #cC9F2C;
+	padding-left: 10px;
+	padding-right: 10px;
+	margin-top: 10px;
+	background: #fCcF5C;
+	padding-bottom: 10px;
+}
+
+/* sidebar blocks */
+
+#sidebar {
+	width: 250px;
+	height: 600px;
+	float: left;
+	font-size: .9em;
+	margin-left: 10px;
+	margin-top: 20px;
+}
+
+#nav {
+	margin-top: 10px;
+	padding-left: 5px;
+}
+
+#digital-commons {
+	height: 150px;
+	padding-left: 5px;
+}
+
+#partners {
+	border-radius: 5px 5px 5px 5px;
+	-moz-border-radius: 5px 5px 5px 5px;
+	-webkit-border-radius: 5px 5px 5px 5px;
+	border: 1px solid #cC9F2C;
+	padding-left: 5px;
+	background: #fCcF5C;
+}
+
 #feed {
 	height: 100px;
-	padding-left:5px;
+	padding-left: 5px;
 }
+
+/* class listings */
+
 .class-listing {
 	width: 670px;
 }
