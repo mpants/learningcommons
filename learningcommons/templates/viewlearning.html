@@ -1,1 +1,10 @@
 {% extends 'base.html' %}
+
+{% block title %}Learn About {{ class.classtitle }} {% if class.classtown %}in {{ class.classtown }}{% endif %} | PLC{% endblock %}
+
+{% block content %}
+<div id="main-fullwidth">
+<h1>{{ class.classtitle }}</h1>
+<p>{{ class.classdescription }}</p>
+{% endblock %}
+</div>

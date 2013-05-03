@@ -6,7 +6,7 @@ from models import source
 class sourceform(ModelForm):
   class Meta:
     model = source
-    exclude = ('classusers','classinterested','classcertified','classteachers',)
+    exclude = ('classusers','classinterested','classcertified','classteachers','classurl',)
   
 
 class addlearning(forms.Form):

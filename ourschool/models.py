@@ -66,7 +66,7 @@ class source(models.Model):
   #free, ious, villages, $30, etc.
   classaccredited = models.BooleanField(blank=True,verbose_name='Accredited?',help_text='Whether or not you (informally) offer recognition of work done by others in this context, even if they are your peers.')
   #is some kind of credit given?
-  classurl = models.URLField(blank=True,verbose_name='Info Website',help_text='Website with info about the class')
+  classsite = models.URLField(blank=True,verbose_name='Info Website',help_text='Website with info about the class')
   #url for more info
   classgroupurl = models.URLField(blank=True,verbose_name='Resource Website',help_text='Website for a class google group, wiki, etc.')
   #url for a google group, wiki, etc.
@@ -87,12 +87,16 @@ class source(models.Model):
   #image for class
   classrelated = models.ManyToManyField('self',blank=True,verbose_name='Related Classes')
   #related classes
+  classurl = AutoSlugField(populate_from='classtitle')
   
-  def _get_url(self):
+  def get_fields(self):
+    return [(field.name, field.value_to_string(self)) for field in source._meta.fields]
+  
+  #def _get_url(self):
     #makes URL from class title
-    return slugify(self.classtitle)
+  #  return slugify(self.classtitle)
   
-  classurl = property(_get_url)
+  #classurl = property(_get_url)
   
   def _get_num_users(self):
     #Gets number of users

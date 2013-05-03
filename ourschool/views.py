@@ -49,9 +49,9 @@ def submitlearning(request):
 def viewlearning(request):
   #View a Learning's details
   learningrequest = request.path[14:]
-  #learning = source.objects.get(classurl__iexact=learningrequest)
+  learning = source.objects.get(classurl__iexact=learningrequest)
   #learning = source.objects.get(classslug=learningrequest)
-  return HttpResponse('Welcome to page %s' % learningrequest)
+  return render_to_response('viewlearning.html',{'class':learning},RequestContext(request))
   
   
 def home(request):
