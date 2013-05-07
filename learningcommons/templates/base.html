@@ -21,6 +21,13 @@
 	</head>
 
 	<body>
+		<div id="meta">
+			{% if user.is_authenticated %}
+			{{ user.username }} | <a href="../logout">Logout</a>
+			{% else %}
+			Login or Register
+			{% endif %}
+		</div>
 		<div id="wrapper">
 			<header>
 			<div id="header">

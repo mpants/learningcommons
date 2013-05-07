@@ -1,11 +1,12 @@
 # Create your views her
 from django.http import HttpResponse, HttpResponseRedirect
+from django.contrib import auth
 from django.template.loader import get_template
 from django.template import Context, Template, RequestContext
 from django.template.defaultfilters import slugify
 from django.shortcuts import render_to_response
 from models import source
-from forms import addlearning, sourceform
+from forms import addlearning, sourceform, AuthenticationForm
 from random import choice
 
 def display_meta_t(request):
@@ -21,28 +22,46 @@ def test(request):
 
 
 def submitlearning(request):
-  if request.method == 'POST':
-    #form = addlearning(request.POST)
-    form = sourceform(request.POST)
-    if form.is_valid():
-      cleaned = form.cleaned_data
-      '''
-      send_mail(
-        cd['title'],
-        cd['subject'],
-        cd['format'],
-        cd['host'],
-        cd['date'],
-        ['nostickgnostic@gmail.com'],
-      )
-      '''
-      #save a new source from the form's data
-      new_source = form.save()
-      return render_to_response('submittedlearning.html',{'classtitle':cleaned['classtitle']},RequestContext(request))
+  if request.user.is_authenticated():
+    if request.method == 'POST':
+      #form = addlearning(request.POST)
+      form = sourceform(request.POST)
+      if form.is_valid():
+        cleaned = form.cleaned_data
+        '''
+        send_mail(
+          cd['title'],
+          cd['subject'],
+          cd['format'],
+          cd['host'],
+          cd['date'],
+          ['nostickgnostic@gmail.com'],
+        )
+        '''
+        #save a new source from the form's data
+        new_source = form.save()
+        return render_to_response('submittedlearning.html',{'classtitle':cleaned['classtitle']},RequestContext(request))
+    else:
+      form = sourceform(initial={'host': 'Community Member'})
+    return render_to_response('submitlearning.html', {'form': form,}, RequestContext(request))
   else:
-    form = sourceform(initial={'host': 'Community Member'})
-  return render_to_response('submitlearning.html', {'form': form}, RequestContext(request))
-    
+    #not logged in
+    errors = ''
+    if request.method == 'POST':
+      form = AuthenticationForm(request.POST)
+      username = request.POST.get('username', '')
+      password = request.POST.get('password', '')
+      user = auth.authenticate(username=username, password=password)
+      if user is not None and user.is_active:
+        # Correct password, and the user is marked "active"
+        auth.login(request, user)
+        form = sourceform(initial={'host':'Community Member'})
+        return render_to_response('submitlearning.html',{'form':form},RequestContext(request))
+      else:
+        errors = 'Bad username or password.  Did you register?'    
+    form = AuthenticationForm()
+    return render_to_response('submitlearning.html',{'loginform':form,'errors':errors}, RequestContext(request))
+      
 def viewlearning(request):
   #View a Learning's details
   learningrequest = request.path[14:]

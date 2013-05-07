@@ -89,7 +89,15 @@ class source(models.Model):
   #related classes
   classurl = AutoSlugField(populate_from='classtitle')
   
-  def get_fields(self):
+  
+  def _get_password(self):
+    password = User.objects.make_random_password()
+    return password
+    
+  #password to edit class
+  classpass = _get_password
+  
+  def _get_fields(self):
     return [(field.name, field.value_to_string(self)) for field in source._meta.fields]
   
   #def _get_url(self):

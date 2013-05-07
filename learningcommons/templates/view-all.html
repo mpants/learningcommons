@@ -30,7 +30,7 @@
 					{{ class.classsubject }}
 				</div>
 				<div class="class-format">
-					{{ class.classformat }}
+					{{ class.get_classformat_display }}
 				</div>
 				<div class="class-nextdate">
 					{{ class.classnextdate|date:"SHORT_DATE_FORMAT" }}

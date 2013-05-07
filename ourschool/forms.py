@@ -1,14 +1,26 @@
 from django import forms
 from django.forms import ModelForm
+from django.contrib.auth.forms import UserCreationForm
 from models import source
+from django.contrib.auth.models import User
 
+class RegisterForm(UserCreationForm):
+  class Meta:
+    model = User
 
 class sourceform(ModelForm):
   class Meta:
     model = source
     exclude = ('classusers','classinterested','classcertified','classteachers','classurl',)
-  
 
+class AuthenticationForm(forms.Form):
+    """
+    Base class for authenticating users. Extend this to get a form that accepts
+    username/password logins.
+    """
+    username = forms.CharField(label="Username", max_length=30)
+    password = forms.CharField(label="Password", widget=forms.PasswordInput)
+  
 class addlearning(forms.Form):
   FORMAT_CHOICES = (
                     ('colearn','Co-Learn'),
