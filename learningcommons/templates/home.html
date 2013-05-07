@@ -49,18 +49,22 @@
 			</div>
 			<br/>
 			{% endfor %}
-			<div id="search-area">
-				<br/>
-				<strong>Search for a class:</strong>
-				<br/>
-				{% if errors %}
-				{% for error in errors %}
-				<br/>
-				{{ error }}
-				{% endfor %}
-				<br/>
-				{% endif %}
-				{% include 'includes/search.html' %}
+			<div id="search-and-see-all">
+				<div id="search-area">
+					<strong>Search for a class:</strong>
+					<br/>
+					{% if errors %}
+					{% for error in errors %}
+					<br/>
+					{{ error }}
+					{% endfor %}
+					<br/>
+					{% endif %}
+					{% include 'includes/search.html' %}
+				</div>
+				<div id="see-all"><br/>
+					<a href='/view-all/'>See all classes</a>.
+				</div>
 			</div>
 		</div>
 		<div id="teach-area">

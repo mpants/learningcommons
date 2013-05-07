@@ -1,0 +1,45 @@
+{% extends 'base.html' %}
+
+{% block title %}View All Local Classes | PLC{% endblock %}
+
+{% block content %}
+<div id="main-fullwidth">
+			<div class="class-listing">
+				<div class="class-name">
+					Learning Name
+				</div>
+				<div class="class-subject">
+					Subject
+				</div>
+				<div class="class-format">
+					Format
+				</div>
+				<div class="class-nextdate">
+					Next Date
+				</div>
+				<div class="class-isfree">
+					Free?
+				</div>
+			</div> </strong>
+			{% for class in classes %}
+			<div class="class-listing">
+				<div class="class-name">
+					<a href='../viewlearning/{{ class.classurl }}'>{{ class }}</a>
+				</div>
+				<div class="class-subject">
+					{{ class.classsubject }}
+				</div>
+				<div class="class-format">
+					{{ class.classformat }}
+				</div>
+				<div class="class-nextdate">
+					{{ class.classnextdate|date:"SHORT_DATE_FORMAT" }}
+				</div>
+				<div class="class-isfree">
+					{{ class.classisfree }}
+				</div>
+			</div>
+			<br/>
+			{% endfor %}
+{% endblock %}
+</div>

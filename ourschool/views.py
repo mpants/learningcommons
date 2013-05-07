@@ -19,8 +19,6 @@ def display_meta_t(request):
 def test(request):
   return HttpResponse('Welcome to page %s' % request.path)
 
-def submitted(request):
-  return HttpResponse('Your local learning is submitted.  After making sure it\'s not unusually illegal, morally repressive, or a seminar on Ayn Rand, we\'ll get it up on the site!')
 
 def submitlearning(request):
   if request.method == 'POST':
@@ -40,8 +38,7 @@ def submitlearning(request):
       '''
       #save a new source from the form's data
       new_source = form.save()
-      
-      return HttpResponseRedirect('/submittedlearning/')
+      return render_to_response('submittedlearning.html',{'classtitle':cleaned['classtitle']},RequestContext(request))
   else:
     form = sourceform(initial={'host': 'Community Member'})
   return render_to_response('submitlearning.html', {'form': form}, RequestContext(request))
@@ -52,7 +49,11 @@ def viewlearning(request):
   learning = source.objects.get(classurl__iexact=learningrequest)
   #learning = source.objects.get(classslug=learningrequest)
   return render_to_response('viewlearning.html',{'class':learning},RequestContext(request))
-  
+
+def viewall(request):
+  #displays all learnings on one page, eventually with filtering logic available
+  classes = source.objects.all()
+  return render_to_response('view-all.html',{'classes':classes}, RequestContext(request))
   
 def home(request):
   #Home page
@@ -73,7 +74,7 @@ def home(request):
   likely = getLikely()
   never = getNever()
   suggestion = getSuggestion()
-  c = RequestContext(request, {'classes':classes,'errors':errors,'suggestion':suggestion,'likely':likely,'never':never,})
+  c = RequestContext(request, {'classes':classes[0:9],'errors':errors,'suggestion':suggestion,'likely':likely,'never':never,})
   return render_to_response('home.html',c)
 
 def getSuggestion():

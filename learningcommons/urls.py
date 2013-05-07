@@ -11,13 +11,13 @@ urlpatterns = patterns('',
     url(r'^$', 'ourschool.views.home', name='home'),
     url(r'^test/', 'ourschool.views.test', name='test'),
     url(r'^viewlearning/', 'ourschool.views.viewlearning',name='viewlearning'),
-    url(r'^search/$','ourschool.views.search',name='search'),
+    url(r'^view-all/$','ourschool.views.viewall',name='viewall'),
+    #url(r'^search/$','ourschool.views.search',name='search'),
     url(r'^submitlearning/$','ourschool.views.submitlearning',name='submitlearning'),
-    url(r'^submittedlearning','ourschool.views.submitted',name='submitted'),
     # url(r'^learningcommons/', include('learningcommons.foo.urls')),
 
     # Uncomment the admin/doc line below to enable admin documentation:
-    # url(r'^admin/doc/', include('django.contrib.admindocs.urls')),
+    url(r'^admin/doc/', include('django.contrib.admindocs.urls')),
 
     # Uncomment the next line to enable the admin:
 )

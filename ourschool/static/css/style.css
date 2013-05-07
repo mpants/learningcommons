@@ -57,10 +57,10 @@ body {
 	-moz-border-radius: 5px 5px 5px 5px;
 	-webkit-border-radius: 5px 5px 5px 5px;
 	border: 1px solid #cC9F2C;
-	padding-bottom: 10px;
+	padding-bottom: 40px;
 	padding-right: 5px;
 	padding-left: 5px;
-	margin-bottom: 10px;
+	margin-bottom: 20px;
 	margin-top: 20px;
 	background: #fCcF5C;
 }
@@ -79,8 +79,19 @@ body {
 	margin-bottom: 10px;
 }
 
+#search-and-see-all
+{
+	width:100%;
+	margin-top:40px;
+	padding-bottom:20px;
+}
 #search-area {
-	margin-top: 10px;
+	float:left;
+	width:350px;
+}
+
+#see-all {
+	float:left;
 }
 
 #about {
