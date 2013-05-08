@@ -25,7 +25,7 @@
 			{% if user.is_authenticated %}
 			{{ user.username }} | <a href="../logout">Logout</a>
 			{% else %}
-			Login or Register
+			<a href="{% url django.contrib.auth.views.login %}?next={{request.path}}">Login</a> or <a href="/register">Register</a>
 			{% endif %}
 		</div>
 		<div id="wrapper">

@@ -5,8 +5,11 @@ from models import source
 from django.contrib.auth.models import User
 
 class RegisterForm(UserCreationForm):
+  email = forms.EmailField(required=True)
+   
   class Meta:
     model = User
+    fields = ("username","email" )
 
 class sourceform(ModelForm):
   class Meta:

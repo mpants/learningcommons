@@ -1,6 +1,8 @@
 from django.db import models
 from django.template.defaultfilters import slugify
 from django_extensions.db.fields import AutoSlugField
+from django.contrib.auth.models import User
+from django.db.models.signals import post_save
 
 class source(models.Model):
   #source of learning - to populate available classes. flexible enough for many formats
@@ -72,13 +74,13 @@ class source(models.Model):
   #url for a google group, wiki, etc.
   classemail = models.EmailField(blank=True,verbose_name='Host Email',help_text='Contact Email For the Learning')
   #email of instructor or organization
-  classusers = models.ManyToManyField('user',related_name='participants',blank=True)
+  classusers = models.ManyToManyField('UserProfile',related_name='participants',blank=True)
   #users participating in a class
-  classinterested = models.ManyToManyField('user',related_name='interested',blank=True)
+  classinterested = models.ManyToManyField('UserProfile',related_name='interested',blank=True)
   #users interested in a class
-  classcertified = models.ManyToManyField('user',related_name='certified',blank=True)
+  classcertified = models.ManyToManyField('UserProfile',related_name='certified',blank=True)
   #users certified in a class
-  classteachers = models.ManyToManyField('user',related_name='teachers',blank=True)
+  classteachers = models.ManyToManyField('UserProfile',related_name='teachers',blank=True)
   #teacher of class user model
   classtown= models.CharField(max_length='40',verbose_name='City',blank=True)
   classlocation = models.TextField(blank=True,verbose_name='Location')
@@ -127,24 +129,28 @@ class source(models.Model):
   def __unicode__(self):
     return self.classtitle
   
-class user(models.Model):
-  #teachers and students
-  
-  username = models.CharField(max_length='20',unique=True)
-  real_name = models.CharField(max_length='50',blank=True,help_text='Anonymity respected - but since this is a community school, real name is really welcomed.')
-  password = models.CharField(max_length='20',help_text='This site is most likely pretty darn unsecure (and a little insecure).  Do not use your bank password please.  For that matter, quit your bank and join a credit union.')
-  email = models.EmailField(unique=True,verbose_name='Email')
-  date_joined = models.DateField(blank=True)
-  user_photo = models.ImageField(blank=True,verbose_name='Your Photo',upload_to='media/participantphoto/')
-  classes_taken = models.ManyToManyField('source',related_name='attended',blank=True)
-  classes_taught = models.ManyToManyField('source',related_name='taught',blank=True)
-  classes_certified = models.ManyToManyField('source',related_name='certified',blank=True)
-  classes_interested = models.ManyToManyField('source',related_name='interested',blank=True)
-  hours_given = models.IntegerField(default=0)
-  website = models.URLField(blank=True,verbose_name='Your Website')
-  selfcred_page = models.URLField(blank=True,verbose_name='Your Accreditation',help_text='Do you document your learning online?  Put the URL here!')
-  interestedin = models.TextField(blank=True,verbose_name='Interested In Learning',help_text='What are you interested in learning?')
-  
-  def __unicode__(self):
-    return self.username
-  
+class UserProfile(models.Model):  
+    user = models.OneToOneField(User)  
+    #other fields here
+    about = models.TextField(blank=True,verbose_name='Something About You',help_text='Who are you?')
+    user_photo = models.ImageField(blank=True,verbose_name='Your Photo',upload_to='media/participantphoto/')
+    classes_taken = models.ManyToManyField('source',related_name='attended',blank=True)
+    classes_taught = models.ManyToManyField('source',related_name='taught',blank=True)
+    classes_certified = models.ManyToManyField('source',related_name='certified',blank=True)
+    classes_interested = models.ManyToManyField('source',related_name='interested',blank=True)
+    hours_given = models.IntegerField(default=0,blank=True)
+    website = models.URLField(blank=True,verbose_name='Your Website')
+    selfcred_page = models.URLField(blank=True,verbose_name='Your Accreditation',help_text='Do you document your learning online?  Put the URL here!')
+    interestedin = models.TextField(blank=True,verbose_name='Interested In Learning',help_text='What are you interested in learning?')
+    
+    def __str__(self):  
+          return "%s's profile" % self.user  
+ 
+def create_user_profile(sender, instance, created, **kwargs):  
+    if created:  
+       profile, created = UserProfile.objects.get_or_create(user=instance)  
+ 
+post_save.connect(create_user_profile, sender=User)
+ 
+User.profile = property(lambda u: u.get_profile() )
+

@@ -6,8 +6,9 @@ from django.template import Context, Template, RequestContext
 from django.template.defaultfilters import slugify
 from django.shortcuts import render_to_response
 from models import source
-from forms import addlearning, sourceform, AuthenticationForm
+from forms import addlearning, sourceform, AuthenticationForm, RegisterForm
 from random import choice
+from django.contrib.auth import authenticate, login
 
 def display_meta_t(request):
   values = request.META.items()
@@ -61,6 +62,33 @@ def submitlearning(request):
         errors = 'Bad username or password.  Did you register?'    
     form = AuthenticationForm()
     return render_to_response('submitlearning.html',{'loginform':form,'errors':errors}, RequestContext(request))
+
+def register(request):
+  if request.method == 'POST':
+    form = RegisterForm(request.POST)
+    if form.is_valid():
+      cleaned = form.cleaned_data
+      '''
+      send_mail(
+        cd['title'],
+        cd['subject'],
+        cd['format'],
+        cd['host'],
+        cd['date'],
+        ['nostickgnostic@gmail.com'],
+      )
+      '''
+      #save a new source from the form's data
+      new_user = form.save()
+      new_user = authenticate(username=request.POST['username'],password=request.POST['password1'])
+      login(request, new_user)
+      return render_to_response('registration/registereduser.html',{'username':cleaned['username'],'next':request.path},RequestContext(request))
+    else:
+      return render_to_response('registration/register.html', {'form': form,}, RequestContext(request))
+  else:
+    form = RegisterForm()
+    return render_to_response('registration/register.html', {'form': form,}, RequestContext(request))
+
       
 def viewlearning(request):
   #View a Learning's details

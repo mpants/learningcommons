@@ -1,0 +1,20 @@
+{% extends 'base.html' %}
+{% block title %}Register To Use Our Site Free | Piedmont Learning Commons{% endblock %}
+{% block content %}	
+	<div id="main-fullwidth">
+	To add or edit Learnings, or to formally join one, you'll need to register.		
+	{% if form.errors %}
+        <p style="color: red;">
+            Please correct the error{{ form.errors|pluralize }} below.
+        </p>
+    {% endif %}
+
+    <form action="" method="post">
+    	{% csrf_token %}
+        <table>
+            {{ form.as_table }}
+        </table>
+        <input type="submit" value="Submit">
+    </form>
+    </div>
+{% endblock %}
