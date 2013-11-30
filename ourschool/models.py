@@ -82,7 +82,9 @@ class source(models.Model):
   #users certified in a class
   classteachers = models.ManyToManyField('UserProfile',related_name='teachers',blank=True)
   #teacher of class user model
-  classtown= models.CharField(max_length='40',verbose_name='City',blank=True)
+  classcreator = models.ForeignKey(User,unique=True)
+  #created the class
+  classtown = models.CharField(max_length='40',verbose_name='City',blank=True)
   classlocation = models.TextField(blank=True,verbose_name='Location')
   #where the class is taking place
   classphoto = models.ImageField(blank=True,verbose_name='Image',upload_to='media/classphotos/')
@@ -128,9 +130,11 @@ class source(models.Model):
   
   def __unicode__(self):
     return self.classtitle
-  
+
+User.profile = property(lambda u: UserProfile.objects.get_or_create(user=u)[0])
+
 class UserProfile(models.Model):  
-    user = models.OneToOneField(User)  
+    user = models.ForeignKey(User,unique=True)  
     #other fields here
     about = models.TextField(blank=True,verbose_name='Something About You',help_text='Who are you?')
     user_photo = models.ImageField(blank=True,verbose_name='Your Photo',upload_to='media/participantphoto/')

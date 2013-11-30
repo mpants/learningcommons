@@ -5,7 +5,7 @@ from django.template.loader import get_template
 from django.template import Context, Template, RequestContext
 from django.template.defaultfilters import slugify
 from django.shortcuts import render_to_response
-from models import source
+from models import source, UserProfile, User
 from forms import addlearning, sourceform, AuthenticationForm, RegisterForm
 from random import choice
 from django.contrib.auth import authenticate, login
@@ -21,6 +21,12 @@ def display_meta_t(request):
 def test(request):
   return HttpResponse('Welcome to page %s' % request.path)
 
+def view_foo(request):
+    user_profile = request.user.get_profile()
+    url = user_profile.url
+
+    #OR
+    url = request.user.get_profile().url
 
 def submitlearning(request):
   if request.user.is_authenticated():
@@ -40,7 +46,9 @@ def submitlearning(request):
         )
         '''
         #save a new source from the form's data
-        new_source = form.save()
+        new_source = form.save(commit=False)
+        new_source.classcreator = request.user
+        new_source.save()
         return render_to_response('submittedlearning.html',{'classtitle':cleaned['classtitle']},RequestContext(request))
     else:
       form = sourceform(initial={'host': 'Community Member'})
@@ -89,6 +97,11 @@ def register(request):
     form = RegisterForm()
     return render_to_response('registration/register.html', {'form': form,}, RequestContext(request))
 
+def viewuserprofile(request):
+  userprofilerequest = request.path[17:]
+  user = User.objects.get(username__iexact=userprofilerequest)
+  userprofile = user.profile
+  return render_to_response('viewuserprofile.html',{'userprofile':userprofile},RequestContext(request))
       
 def viewlearning(request):
   #View a Learning's details

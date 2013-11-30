@@ -10,7 +10,9 @@ body {
 	margin-right: auto;
 	margin-top: 40px;
 	background: #f3c553;
-	min-height: 950px;
+	min-height: 750px;
+	overflow-y:hidden;
+	overflow-x:hidden;
 	border-radius: 5px 5px 5px 5px;
 	-moz-border-radius: 5px 5px 5px 5px;
 	-webkit-border-radius: 5px 5px 5px 5px;
