@@ -21,24 +21,35 @@
 	</head>
 
 	<body>
-		<div id="meta">
-			{% if user.is_authenticated %}
-			{{ user.username }} | <a href="../logout">Logout</a>
-			{% else %}
-			<a href="{% url django.contrib.auth.views.login %}?next={{request.path}}">Login</a> or <a href="/register">Register</a>
-			{% endif %}
-		</div>
 		<div id="wrapper">
 			<header>
-			<div id="header">
+			
+				<div id="top-nav">
+				<div id="nav-links">
+				Home |
+				Learn |
+				Add a Learning |
+				About |
+				Blog 
+				</div>
+				<div id="nav-meta-links">
+				
+					{% if user.is_authenticated %}
+			{{ user.username }} | <a href="../logout">Logout</a>
+			{% else %}
+			<a href="{% url "django.contrib.auth.views.login" %}?next={{request.path}}">Login</a> | <a href="/register">Register</a>
+			{% endif %}
+			</div>
+				</div>
+				
 				<div id="logo">
 					<a href="/"><img src="{{ STATIC_URL }}img/piedmont-learning-commons.png" width="100%"/></a>
 				</div>
-
-			</div>
-			<div id="intro-text">
+                <div id="intro-text">
 				<strong>Learning is everywhere.  Discover debt-free sources of learning in our community.</strong>
-			</div>
+				</div>
+			
+			
 			</header>
 			{% block content %}{% endblock %}
 			{% block footer %}
