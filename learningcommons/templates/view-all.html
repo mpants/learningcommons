@@ -3,8 +3,9 @@
 {% block title %}View All Local Classes | PLC{% endblock %}
 
 {% block content %}
-<div id="main-fullwidth">
+<div id="main-fullwidth" class="rounded-box">
 			<div class="class-listing">
+				<strong>
 				<div class="class-name">
 					Learning Name
 				</div>
@@ -12,14 +13,15 @@
 					Subject
 				</div>
 				<div class="class-format">
-					Format
+					Type
 				</div>
 				<div class="class-nextdate">
-					Next Date
+					Date
 				</div>
 				<div class="class-isfree">
 					Free?
 				</div>
+				</strong>
 			</div> </strong>
 			{% for class in classes %}
 			<div class="class-listing">
@@ -33,7 +35,7 @@
 					{{ class.get_classformat_display }}
 				</div>
 				<div class="class-nextdate">
-					{{ class.classnextdate|date:"SHORT_DATE_FORMAT" }}
+					{{ class.classnextdate|date:"M d" }}
 				</div>
 				<div class="class-isfree">
 					{{ class.classisfree }}

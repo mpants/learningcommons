@@ -2,13 +2,31 @@ body {
 	background: url('../img/piedmont-terrain-bkg.jpg') no-repeat fixed center center / cover transparent;
 	font-family: 'Noto Sans', sans-serif;
 	color: #495148;
+	margin-top:0px;
 }
+
+/*********
+ * Fix
+ */
 
 *, *:after, *:before {
   -webkit-box-sizing: border-box;
   -moz-box-sizing: border-box;
   box-sizing: border-box;
 }
+
+/**********
+ * Elements
+ */
+
+a 
+{
+	text-decoration:none;
+	color:#bb00bb;
+	font-weight:bold;
+}
+
+
 
 #wrapper {
 	width: 960px;
@@ -17,10 +35,7 @@ body {
 	background: #f3c553;
 	min-height: 750px;
 	overflow-y:hidden;
-	overflow-x:hidden;
-	border-radius: 5px 5px 5px 5px;
-	-moz-border-radius: 5px 5px 5px 5px;
-	-webkit-border-radius: 5px 5px 5px 5px;
+	overflow-x:hidden;-
 	border: 0px solid #000000;
 	-webkit-box-shadow: 1px 1px 5px 0px rgba(0,0,0,0.75);
 	-moz-box-shadow: 1px 1px 5px 0px rgba(0,0,0,0.75);
@@ -35,21 +50,43 @@ header {
 
 #top-nav
 {
-	padding:5px;
 	height:40px;
 	
 }
 
-#nav-links
+.nav-links
 {
-	float:left; 
-	font-size:1.3em;
+	float:left;
+	margin:0px 0px 0px -40px; 
 }
 
+.nav-links > li
+{
+	float:left;
+	
+	font-size:1.2em;
+	text-transform:uppercase;
+	list-style:none;
+	padding:10px 20px;
+}
+.nav-links > li > a
+{
+	color:#ffffff;
+}
+
+.nav-links > .active
+{
+	background-color:#495148;
+}
+	
 #nav-meta-links
 {
 	float:right;
 	font-size:1.1em;
+	background:#fCcF5C;
+	text-transform:uppercase;
+	padding: 10px;
+	margin:0px;
 }
 
 #logo {
@@ -59,7 +96,7 @@ header {
 #intro-text {
 	font-size: 1.2em;
 	padding-left: 20px;
-	padding-top: 3px;
+	padding-top: 10px;
 	padding-bottom: 3px;
 }
 
@@ -82,20 +119,38 @@ header {
 }
 
 
+/****************
+ * Grid & layout
+ ***************/
 
 .col-2-3 {
-    float:left;
 	width:66.66%;
 }
 
 .col-1-3 {
-	float: left;
 	width:33.33%;
 }
 
+[class*='col-'] { 
+	float:left;
+	padding-right: 20px;
+	}
+	
+	[class*='col-']:last-of-type {
+		padding-right:0;
+	}
+.grid:after {
+	content:"";
+	display:table;
+	clear:both;
+}
+/****************
+ * 
+
+ */
+
 #sidebar {
-	margin-left:10px;
-	margin-top:20px;
+	margin-left:20px;
 }
 
 .rounded-box
@@ -104,9 +159,14 @@ header {
 	-moz-border-radius: 5px 5px 5px 5px;
 	-webkit-border-radius: 5px 5px 5px 5px;
 	border: 1px solid #cC9F2C;
-	padding:5px 20px;
+	padding:10px;
 	margin:15px 0;
 	background: #fCcF5C;
+}
+
+.rounded-box h2
+{
+	margin-top:0px;
 }
 
 .clear-box

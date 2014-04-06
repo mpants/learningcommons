@@ -3,9 +3,24 @@
 {% block title %}Learn About {{ class.classtitle }} {% if class.classtown %}in {{ class.classtown }}{% endif %} | PLC{% endblock %}
 
 {% block content %}
-<div id="main-fullwidth">
-<h1>{{ class.classtitle }}</h1>
+<div id="content">
+	<div class="grid">
+<div class="col-2-3">
+	<div class="rounded-box">
+<h2>{{ class.classtitle }}</h2>
 <p>{{ class.classdescription }}</p>
 <p>Created by <a href='../viewuserprofile/{{ class.classcreator }}'>{{ class.classcreator }}</a></p>
+</div>
+</div>
+<div class="col-1-3">
+	<div class="rounded-box">
+<h2>Join This Learning</h2>
+<p>Here's how to be a part of this Learning:</p>
+<p>{{ class.classlocation }}</p>
+<p> 
+<em>Information provided by Learning creator. Contact them with any questions.</em></p>
+</div>
+</div>
 {% endblock %}
+</div>
 </div>

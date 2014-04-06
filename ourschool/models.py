@@ -85,7 +85,7 @@ class source(models.Model):
   classcreator = models.ForeignKey(User,unique=True)
   #created the class
   classtown = models.CharField(max_length='40',verbose_name='City',blank=True)
-  classlocation = models.TextField(blank=True,verbose_name='Location')
+  classlocation = models.TextField(blank=True,verbose_name='Instructions For Joining This Learning',help_text='How does someone sign up for this Learning, or express interest in starting one with you? Give contact info here, which can include a website for your organization, an e-mail address, or a time and place where you\'ll be gathering to learn.')
   #where the class is taking place
   classphoto = models.ImageField(blank=True,verbose_name='Image',upload_to='media/classphotos/')
   #image for class

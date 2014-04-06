@@ -1,7 +1,7 @@
 {% extends 'base.html' %}
 {% block title %}List Your Workshop, Discussion Group, or Class | Piedmont Learning Commons{% endblock %}
 {% block content %}	
-	<div id="main-fullwidth">
+	<div id="main-fullwidth" class="rounded-box">
 	{% if user.is_authenticated %}
 		{% if form.errors %}
 	        <p style="color: red;">
